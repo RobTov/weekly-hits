@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .models import Artists
+from .serializers import ArtistSerializer
 
-# Create your views here.
+class ArtistList(generics.ListCreateAPIView):
+    queryset = Artists.objects.all()
+    serializer_class = ArtistSerializer
+
+class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Artists.objects.all()
+    serializer_class = ArtistSerializer
+
