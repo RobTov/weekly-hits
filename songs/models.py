@@ -6,6 +6,7 @@ class Songs(models.Model):
     album = models.CharField(max_length=100, blank=False)
     genre = models.CharField(max_length=100, blank=False)
     release_date = models.DateTimeField(blank=False)
+    score = models.IntegerField(blank=False, default=0)
     artist = models.ForeignKey(Artists, on_delete=models.CASCADE, related_name='songs')
 
     def __str__(self):
