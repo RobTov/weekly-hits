@@ -7,13 +7,13 @@ function App() {
   return (
     <Router>
       <Routes >
-      <Route path='/' element={<RootLayout />}>
-        <Route index path='/' element={<Home />} />
-      
-      </Route>
+        <Route path='/' element={<RootLayout />}>
+          <Route index path='/' element={<Home />} />
+        </Route>
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
