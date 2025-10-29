@@ -5,7 +5,7 @@ export type Artist = {
   genre: string;
 };
 
-export type ArtisStore = {
+export type ArtistStore = {
   artists: Array<Artist>;
   getArtist: () => Promise<void>;
   createArtist: (value: Artist) => Promise<void>;
@@ -15,8 +15,8 @@ export type ArtisStore = {
 
 export type StoreSet = (
   partial:
-    | ArtisStore
-    | Partial<ArtisStore>
-    | ((state: ArtisStore) => ArtisStore | Partial<ArtisStore>),
+    | ArtistStore
+    | Partial<ArtistStore>
+    | ((state: ArtistStore) => ArtistStore | Partial<ArtistStore>),
   replace?: boolean | undefined
 ) => void;
