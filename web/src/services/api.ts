@@ -1,6 +1,6 @@
 import { environment } from "../configs/environment";
 
-export async function get<T>(url: string): Promise<Array<T>> {
+export async function get<T>(url: string): Promise<Array<any>> {
   const response = await fetch(`${environment.baseURL}${url}`);
   const data = await response.json();
   return data;
