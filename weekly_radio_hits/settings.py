@@ -132,8 +132,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS HEADERS
-CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
-    "https://another-example.com",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://production-site",
+# ]
 
+CORS_ALLOW_ALL_ORIGINS = True
