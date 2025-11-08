@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'artists',
-    'songs'
+    'songs',
+    'django_seed',
 ]
 
 MIDDLEWARE = [
