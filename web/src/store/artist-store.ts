@@ -16,14 +16,14 @@ export const useArtistStore = create<ArtistStore>()((set) => ({
     }));
   },
   updateArtist: async (updatedArtist: Artist) => {
-    const artist = await update(updatedArtist, "artists");
+    const artist = await update(updatedArtist, `artists/${updatedArtist.id}/`);
     return set((state) => ({
       ...state,
       artists: state.artists.map((a) => (a.id === artist.id ? artist : a)),
     }));
   },
   deleteArtist: async (id: number) => {
-    await deletefn(id, "artists");
+    await deletefn(id, `artists/${id}/`);
     return set((state) => ({
       ...state,
       artists: state.artists.filter((artist) => id === artist.id),

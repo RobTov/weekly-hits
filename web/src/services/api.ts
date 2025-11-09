@@ -26,7 +26,7 @@ export async function update<T>(itemToUpdate: T, url: string): Promise<T> {
 }
 
 export async function deletefn(id: number, url: string): Promise<void> {
-    await fetch(`${environment.baseURL}${url}/`, {
+    await fetch(`${environment.baseURL}${url}`, {
         method: 'DELETE'
     })
 }
