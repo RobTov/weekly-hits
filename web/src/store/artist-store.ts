@@ -23,7 +23,7 @@ export const useArtistStore = create<ArtistStore>()((set) => ({
     }));
   },
   deleteArtist: async (id: number) => {
-    await deletefn(id, `artists/${id}/`);
+    await deletefn(`artists/${id}/`);
     return set((state) => ({
       ...state,
       artists: state.artists.filter((artist) => id === artist.id),

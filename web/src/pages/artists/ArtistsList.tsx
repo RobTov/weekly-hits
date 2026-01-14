@@ -8,14 +8,13 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Artist } from '../../types/artists';
+import { Link } from 'react-router-dom';
 
 const ArtistsList = () => {
 
   const {
     artists,
     getArtist,
-    createArtist,
-    updateArtist,
     deleteArtist
   } = useArtistStore();
 
@@ -58,7 +57,9 @@ const ArtistsList = () => {
       {/* Title and New Button */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, mt: 5, width: 1600 }}>
         <Typography variant="h5">Artistas</Typography>
-        <Button variant="contained" color="primary">Nuevo</Button>
+        <Link to="new" >
+          <Button variant="contained" color="primary"  >Nuevo</Button>
+        </Link>
       </Box>
 
       <TableContainer component={Paper}>

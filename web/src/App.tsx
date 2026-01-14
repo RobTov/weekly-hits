@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import RootLayout from './layouts/RootLayout';
 import Home from './pages/Home';
 import ArtistsList from './pages/artists/ArtistsList';
+import ArtistCreate from './pages/artists/ArtistCreate';
 
 function App() {
   return (
@@ -10,7 +11,10 @@ function App() {
       <Routes >
         <Route path='/' element={<RootLayout />}>
           <Route index path='/' element={<Home />} />
-          <Route index path='/artist' element={<ArtistsList />} />
+          <Route path='/artist' >
+            <Route path='' element={<ArtistsList />} />
+            <Route path='new' element={<ArtistCreate />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
