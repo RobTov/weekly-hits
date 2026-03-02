@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import ArtistsList from './pages/artists/ArtistsList';
 import ArtistCreate from './pages/artists/ArtistCreate';
 import SongsList from './pages/songs/SongsList';
+import SongCreate from './pages/songs/SongCreate';
+import Graph from './pages/graph/Graph';
 
 function App() {
   return (
@@ -16,8 +18,11 @@ function App() {
             <Route path='' element={<ArtistsList />} />
             <Route path='new' element={<ArtistCreate />} />
           </Route>
-          <Route path='/songs' element={<SongsList />} >
+          <Route path='/songs'  >
+            <Route path='' element={<SongsList />} />
+            <Route path='new' element={<SongCreate />} />
           </Route>
+          <Route path='/graphs' element={<Graph />} />
         </Route>
       </Routes>
     </Router>

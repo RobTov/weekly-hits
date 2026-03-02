@@ -7,7 +7,7 @@ export async function get<T>(url: string): Promise<Array<any>> {
   return data;
 }
 
-export async function create<T>(newItem: Artist, url: string): Promise<T> {
+export async function create<T>(newItem: T, url: string): Promise<T> {
   const response = await fetch(`${environment.baseURL}${url}`, {
     method: "POST",
     body: JSON.stringify(newItem),
