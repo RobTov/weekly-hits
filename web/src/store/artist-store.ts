@@ -9,10 +9,18 @@ export const useArtistStore = create<ArtistStore>()((set) => ({
     return set((state) => ({ ...state, artists }));
   },
   createArtist: async (newArtist: Artist) => {
-    const artist = await createFn(newArtist, "artists");
+    // {
+    //   name: newArtist.name,
+    //   genre: newArtist.genre,
+    //   country: newArtist.country,
+    // } ,
+    const artist = await createFn(
+      newArtist,
+      "artists/",
+    );
     return set((state) => ({
       ...state,
-      artists: [...state.artists, artist],
+      artists: [...state.artists, newArtist],
     }));
   },
   updateArtist: async (updatedArtist: Artist) => {

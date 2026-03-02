@@ -11,14 +11,12 @@ import { Artist } from '../../types/artists';
 import { Link } from 'react-router-dom';
 
 const ArtistsList = () => {
-
   const {
     artists,
     getArtist,
     deleteArtist
   } = useArtistStore();
 
-  const [rows, setRows] = useState<Artist[]>(artists);
 
 
   useEffect(() => {
@@ -32,7 +30,8 @@ const ArtistsList = () => {
 
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
-
+  const [rows, setRows] = useState<Artist[]>(artists);
+  
   const handleDeleteClick = (id: number) => {
     setSelectedId(id);
     setOpen(true);
