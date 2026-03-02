@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useArtistStore } from '../../store/artist-store';
+import { useSongStore } from '../../store/song-store';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
   IconButton, Dialog, DialogTitle, DialogContent, DialogContentText,
@@ -7,31 +7,31 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Artist } from '../../types/artists';
+import { Song } from '../../types/songs';
 import { Link } from 'react-router-dom';
 
-const ArtistsList = () => {
+const SongsList = () => {
   const {
-    artists,
-    getArtist,
-    deleteArtist
-  } = useArtistStore();
+    songs,
+    getSong,
+    deleteSong
+  } = useSongStore();
 
 
 
   useEffect(() => {
     const onComponentLoad = () => {
-      getArtist();
+      getSong();
     };
     onComponentLoad();
   }, [
-    console.log(artists)
+    console.log(songs)
   ]);
 
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [rows, setRows] = useState<Artist[]>(artists);
-  
+  const [rows, setRows] = useState<Song[]>(songs);
+
   const handleDeleteClick = (id: number) => {
     setSelectedId(id);
     setOpen(true);
@@ -41,7 +41,7 @@ const ArtistsList = () => {
     if (selectedId !== null) {
       setRows(rows.filter(row => row.id !== selectedId));
     }
-    deleteArtist(selectedId!)
+    deleteSong(selectedId!)
     setOpen(false);
     setSelectedId(null);
   };
@@ -55,9 +55,9 @@ const ArtistsList = () => {
     <>
       {/* Title and New Button */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, mt: 5, width: 1600 }}>
-        <Typography variant="h5">Artistas</Typography>
+        <Typography variant="h5">Canciones</Typography>
         <Link to="new" >
-          <Button variant="contained" color="primary"  >Nuevo</Button>
+          <Button variant="contained" color="primary" >Nueva</Button>
         </Link>
       </Box>
 
@@ -66,19 +66,25 @@ const ArtistsList = () => {
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell>Nombre</TableCell>
-              <TableCell>País</TableCell>
+              <TableCell>Título</TableCell>
+              <TableCell>Álbum</TableCell>
               <TableCell>Genero</TableCell>
-              <TableCell>Acciones</TableCell>
+              <TableCell>Fecha de Salida</TableCell>
+              <TableCell>Score</TableCell>
+              <TableCell>Artista</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map(row => (
               <TableRow key={row.id}>
                 <TableCell>{row.id}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.country}</TableCell>
+                <TableCell>{row.title}</TableCell>
+                <TableCell>{row.album}</TableCell>
                 <TableCell>{row.genre}</TableCell>
+                <TableCell>{row.releseDate}</TableCell>
+                <TableCell>{row.score}</TableCell>
+                <TableCell>{row.artist.name}</TableCell>
+
                 <TableCell>
                   <IconButton color="primary">
                     <EditIcon />
@@ -95,10 +101,10 @@ const ArtistsList = () => {
 
       {/* Confirm Delete Dialog */}
       <Dialog open={open} onClose={handleCancel}>
-        <DialogTitle>Eliminar Artista</DialogTitle>
+        <DialogTitle>Eliminar Canción</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Está seguro que desea elminar el artista?
+            Está seguro que desea elminar la canción?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -111,4 +117,4 @@ const ArtistsList = () => {
 
 }
 
-export default ArtistsList
+export default SongsList

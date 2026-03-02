@@ -1,4 +1,5 @@
 import { environment } from "../configs/environment";
+import { Artist } from "../types/artists";
 
 export async function get<T>(url: string): Promise<Array<any>> {
   const response = await fetch(`${environment.baseURL}${url}`);
@@ -11,6 +12,7 @@ export async function create<T>(newItem: T, url: string): Promise<T> {
     method: "POST",
     body: JSON.stringify(newItem),
   });
+  console.log(JSON.stringify(newItem))
   const data = await response.json();
   return data;
 }

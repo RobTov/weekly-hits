@@ -9,9 +9,11 @@ export default function Navbar() {
         {/* Centered navigation links */}
         <Box sx={{ display: 'flex', gap: 3, margin: '0 auto' }}>
           <Link to="" > <Button color="inherit">   Inicio</Button> </Link>
-          <Link to="song" ><Button color="inherit">Canciones</Button> </Link>
+          <Link to="songs" ><Button color="inherit">Canciones</Button> </Link>
           <Link to="artist" > <Button color="inherit">Artistas</Button></Link>
-          <Button color="inherit">Gráficas</Button>
+          <Link to="graphs" >
+            <Button color="inherit">Gráficas</Button>
+          </Link>
         </Box>
 
         {/* Right-aligned login button */}
