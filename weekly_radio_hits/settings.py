@@ -84,15 +84,22 @@ WSGI_APPLICATION = 'weekly_radio_hits.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'postgres',
+#     'USER': 'postgres',
+#     'PASSWORD': 'postgres',
+#     'HOST': 'localhost', # Use the server address if not local
+#     'PORT': '5497', # Default is 5432; leave empty if unchanged
+# }
+# }
+
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'postgres',
-    'USER': 'postgres',
-    'PASSWORD': 'postgres',
-    'HOST': 'localhost', # Use the server address if not local
-    'PORT': '5497', # Default is 5432; leave empty if unchanged
-}
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
