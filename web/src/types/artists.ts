@@ -13,16 +13,10 @@ export type ArtistPayload = {
 
 export type ArtistStore = {
   artists: Array<Artist>;
+  loading: boolean;
+  error: string | null;
   getArtist: () => Promise<void>;
   createArtist: (value: Artist) => Promise<void>;
   updateArtist: (value: Artist) => Promise<void>;
   deleteArtist: (id: number) => Promise<void>;
 };
-
-export type StoreSet = (
-  partial:
-    | ArtistStore
-    | Partial<ArtistStore>
-    | ((state: ArtistStore) => ArtistStore | Partial<ArtistStore>),
-  replace?: boolean | undefined,
-) => void;

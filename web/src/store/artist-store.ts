@@ -4,37 +4,57 @@ import { create as createFn, get, update, deletefn } from "../services/api";
 
 export const useArtistStore = create<ArtistStore>()((set) => ({
   artists: [],
+  loading: false,
+  error: null,
   getArtist: async () => {
-    const artists = await get("artists/");
-    return set((state) => ({ ...state, artists }));
+    set({ loading: true, error: null });
+    try {
+      const artists: Artist[] = await get("artists/");
+      set({ artists, loading: false });
+    } catch (error: any) {
+      set({ error: error.message, loading: false });
+    }
   },
   createArtist: async (newArtist: Artist) => {
-    // {
-    //   name: newArtist.name,
-    //   genre: newArtist.genre,
-    //   country: newArtist.country,
-    // } ,
-    const artist = await createFn(
-      newArtist,
-      "artists/",
-    );
-    return set((state) => ({
-      ...state,
-      artists: [...state.artists, newArtist],
-    }));
+    set({ loading: true, error: null });
+    try {
+      const artist = await createFn(newArtist, "artists/");
+      set((state) => ({
+        ...state,
+        artists: [...state.artists, artist],
+        loading: false,
+      }));
+    } catch (error: any) {
+      set({ error: error.message, loading: false });
+      throw error;
+    }
   },
   updateArtist: async (updatedArtist: Artist) => {
-    const artist = await update(updatedArtist, `artists/${updatedArtist.id}/`);
-    return set((state) => ({
-      ...state,
-      artists: state.artists.map((a) => (a.id === artist.id ? artist : a)),
-    }));
+    set({ loading: true, error: null });
+    try {
+      const artist = await update(updatedArtist, `artists/${updatedArtist.id}/`);
+      set((state) => ({
+        ...state,
+        artists: state.artists.map((a) => (a.id === artist.id ? artist : a)),
+        loading: false,
+      }));
+    } catch (error: any) {
+      set({ error: error.message, loading: false });
+      throw error;
+    }
   },
   deleteArtist: async (id: number) => {
-    await deletefn(`artists/${id}/`);
-    return set((state) => ({
-      ...state,
-      artists: state.artists.filter((artist) => id === artist.id),
-    }));
+    set({ loading: true, error: null });
+    try {
+      await deletefn(`artists/${id}/`);
+      set((state) => ({
+        ...state,
+        artists: state.artists.filter((artist) => id !== artist.id),
+        loading: false,
+      }));
+    } catch (error: any) {
+      set({ error: error.message, loading: false });
+      throw error;
+    }
   },
 }));
